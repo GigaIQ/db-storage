@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} All items list{% endblock %}</h1>
+    {% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['item_id']) }}">
+            <h6>{{ post['item_name'] }} {{ post['item_model'] }}</h6>
+        </a>
+        <a href="{{ url_for('edit', id=post['item_id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <span class="badge badge-primary"> ID:{{ post['item_id'] }}</span>
+        <hr>
+    {% endfor %}
+{% endblock %}

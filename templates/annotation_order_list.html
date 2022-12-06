@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>{% block title %}Annotation  {% endblock %}</h3>
+<h3>Order list ID -- {{ item.order_list_id }}</h3>
+<h3>Order ID -- {{ item.order_id }}</h3>
+<h3>Processed by manager with ID -- {{ item.manager_id }}</h3>
+<h3>To order date -- {{ item.order_date }}</h3>
+<h3>Status -- {{ item.status }}</h3>
+
+    <a href="{{ url_for('index_order_list') }}">
+            <span class="badge badge-warning">Back</span>
+        </a>
+
+    <a href="{{ url_for('edit_order_list', id=item.order_list_id) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<tbody>
+        {% for item in item %}
+            <tr>
+                ID <th scope="row">{{ item.manager_id }}</th> :
+                <br>
+                <a href="{{ url_for('post_manager', post_id=item.manager_id) }}">
+                    <h6> {{ item.surname }} {{ item.name }} </h6>
+                </a>
+                <td><a class="badge badge-warning" href="{{ url_for('edit_manager', id=item.manager_id) }}">Edit</a></td>
+                <br>
+                <br>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

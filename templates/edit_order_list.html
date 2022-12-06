@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Edit order list {% endblock %}</h1>
+
+<div class="continer">
+    <form class='form-horizontal' method='POST' action="">
+        {{ form.csrf_token() }}
+        <div class="form-group">
+            {{ form.first_input.label }} {{ form.first_input }}
+        </div>
+        <div class="form-group">
+            {{ form.second_input.label }} {{ form.second_input }}
+        </div>
+        <div class="form-group">
+            {{ form.third_input.label }} {{ form.third_input }}
+        </div>
+        <div class="form-group">
+            {{ form.four_input.label }} {{ form.four_input }}
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <form
+
+        action="{{ url_for('delete_order_list', id=now_id) }}" method="POST">
+        {{ form.csrf_token() }}
+        <input type="submit" value="Delete Post"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Are you sure you want to delete this?')">
+    </form>
+
+</div>
+{% endblock %}

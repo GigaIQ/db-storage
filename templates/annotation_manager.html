@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>{% block title %}Annotation  {% endblock %}</h3>
+<h3>Manager surname -- {{ item.surname }}</h3>
+<h3>Manager name -- {{ item.name }}</h3>
+<h3>ID -- {{ item.manager_id }}</h3>
+
+    <a href="{{ url_for('index_manager') }}">
+            <span class="badge badge-warning">Back</span>
+        </a>
+
+    <a href="{{ url_for('edit_manager', id=item.manager_id) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Edit manager {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        {{ form.csrf_token() }}
+        {% if form.csrf_token.errors %}
+            <war class="warning">You have submitted an invalid CSRF token</war>
+        {% endif %}
+        <label for="title"></label>
+        <label for=""> {{ form.first_input.label }}</label>
+            {{ form.first_input }}
+    </div>
+
+    <div class="form-group">
+        {{ form.csrf_token() }}
+        <label for="content"></label>
+        <label for=""> {{ form.second_input.label }}</label>
+            {{ form.second_input }}
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+    <form
+
+        action="{{ url_for('delete_manager', id=now_id) }}" method="POST">
+        {{ form.csrf_token() }}
+        <input type="submit" value="Delete Post"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Are you sure you want to delete this?')">
+    </form>
+
+{% endblock %}

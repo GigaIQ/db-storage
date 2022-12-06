@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<tbody>
+        {% for item in item %}
+            <tr>
+                Order list with ID: <th scope="row">{{ item.order_list_id }}</th>
+                <br>
+                <a href="{{ url_for('post_order_list', post_id=item.order_list_id) }}">
+                    <h6>Contains order with ID: {{ item.order_id }} <br>Processed by manager with ID: {{ item.manager_id }} <br>
+                        Delivery date: {{ item.order_date }} <br> Current status: {{ item.status }}</h6>
+                </a>
+                <td><a class="badge badge-warning" href="{{ url_for('edit_order_list', id=item.order_list_id) }}">Edit</a></td>
+                <br>
+                <br>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

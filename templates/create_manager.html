@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Create a new manager {% endblock %}</h1>
+
+<div class="continer">
+    <form class='form-horizontal' method='POST' action="">
+        {{ form.csrf_token() }}
+        <div class="form-group">
+            {{ form.first_input.label }} {{ form.first_input }}
+        </div>
+        <div class="form-group">
+            {{ form.second_input.label }} {{ form.second_input }}
+        </div>
+        <div class="form-group">
+           <a href="{{ url_for('index_manager') }}"><span class="badge badge-warning">Back</span></a>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
