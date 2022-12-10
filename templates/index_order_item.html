@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <tbody>
+
+    <form class='form-horizontal' method='POST' action="">
+        {{ form.csrf_token() }}
+    <h3>Find order item </h3> {{ form.first_input.label }} {{ form.first_input }} {{ form.second_input.label }} {{ form.second_input }}
+        <td>{{ form.submit(class="btn btn-primary") }}</form> <br>
         {% for item in item %}
             <tr>
-                Order ID <th scope="row">{{ item.order_id }}</th> :
-                <br>
-                <a href="{{ url_for('post_order_item', post_id=item.order_id) }}">
+                Order item ID <th scope="row">{{ item.order_id }}</th> :
+                <a href="{{ url_for('post_item', post_id=item.order_id) }}">
                     <h6> Item in order with ID "{{ item.item_id }}" and amount of "{{ item.amount }}" </h6>
                 </a>
                 <td><a class="badge badge-warning" href="{{ url_for('edit_order_item', id=item.order_id) }}">Edit</a></td>
@@ -13,5 +17,19 @@
                 <br>
             </tr>
         {% endfor %}
-        </tbody>
+        </td>
+</tbody>
+        {% for page_num in item.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+           {% if page_num %} {% if item.page == page_num %}
+        <a class="btn btn-info mb-4"
+        href="{{ url_for('index_order_item', page=page_num) }}"> {{ page_num }} </a>
+        {% else %}
+        <a class="btn btn-outline-info mb-4"
+        href="{{ url_for('index_order_item', page=page_num) }}"> {{ page_num }} </a>
+        {% endif %} {% else %} ... {% endif %} {% endfor %}
 {% endblock %}
+
+
+
+
+{{ form.submit(class="btn btn-primary") }}

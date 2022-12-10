@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <tbody>
-
-    <form class='form-horizontal' method='POST' action="">
-        {{ form.csrf_token() }}
-    <h3>Find item </h3> {{ form.first_input.label }} {{ form.first_input }} {{ form.second_input.label }} {{ form.second_input }}
-        <td>{{ form.submit(class="btn btn-primary") }}</form> <br>
-        {% for item in item %}
+    {{ form.csrf_token() }}
+    Find item {{ form.first_input.label }} {{ form.first_input }} {{ form.second_input.label }} {{ form.second_input }}
+            <a class="badge badge-warning" href="{{ url_for('find_items') }}">Find</a> <br> <br>
+        {% for item in item.items %}
             <tr>
                 ID <th scope="row">{{ item.item_id }}</th> :
                 <br>
@@ -18,7 +16,6 @@
                 <br>
             </tr>
         {% endfor %}
-        </td>
 </tbody>
         {% for page_num in item.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
            {% if page_num %} {% if item.page == page_num %}
@@ -29,8 +26,3 @@
         href="{{ url_for('show_items', page=page_num) }}"> {{ page_num }} </a>
         {% endif %} {% else %} ... {% endif %} {% endfor %}
 {% endblock %}
-
-
-
-
-{{ form.submit(class="btn btn-primary") }}

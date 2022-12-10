@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<tbody>
+            <tr>
+                <h3>
+                Number of completed orders -- {{ status[0] }} <br>
+                Number of orders in transit -- {{ status[1] }} <br>
+                Number of orders waiting in stock -- {{ status[2] }} <br>
+                Total number of orders -- {{ status[3] }}
+                <br>
+                <br>
+                Most popular item -- {{item.item_name}} {{item.item_model}} with ID: {{ item.item_id }} <br>
+                Most productive manager -- {{ manager.surname }} {{ manager.name }} with ID: {{ manager.manager_id }}</h3>
+            </tr>
+        </tbody>
+{% endblock %}

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <tbody>
+
+    <form class='form-horizontal' method='POST' action="">
+        {{ form.csrf_token() }}
+    <h3>Find manager </h3> {{ form.first_input.label }} {{ form.first_input }} {{ form.second_input.label }} {{ form.second_input }}
+        <td>{{ form.submit(class="btn btn-primary") }}</form> <br>
         {% for item in item %}
             <tr>
                 ID <th scope="row">{{ item.manager_id }}</th> :
@@ -13,5 +18,19 @@
                 <br>
             </tr>
         {% endfor %}
-        </tbody>
+        </td>
+</tbody>
+        {% for page_num in item.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+           {% if page_num %} {% if item.page == page_num %}
+        <a class="btn btn-info mb-4"
+        href="{{ url_for('index_manager', page=page_num) }}"> {{ page_num }} </a>
+        {% else %}
+        <a class="btn btn-outline-info mb-4"
+        href="{{ url_for('index_manager', page=page_num) }}"> {{ page_num }} </a>
+        {% endif %} {% else %} ... {% endif %} {% endfor %}
 {% endblock %}
+
+
+
+
+{{ form.submit(class="btn btn-primary") }}
